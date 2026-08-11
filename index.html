@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeadScan Pro - Varredura Inteligente de Leads & Prospecção B2B</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="app-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">⚡</div>
+                <div class="brand-title">
+                    <h2>LeadScan <span>PRO</span></h2>
+                    <p>Scanner B2B & Prospecção</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-view="scanner" id="navScanner">
+                    <span class="icon">🔍</span> Varredura de Leads
+                </a>
+                <a href="#" class="menu-item" data-view="saved" id="navSaved">
+                    <span class="icon">⭐</span> Leads Salvos (CRM)
+                    <span class="nav-badge" id="savedCountBadge">0</span>
+                </a>
+                <a href="#" class="menu-item" data-view="templates" id="navTemplates">
+                    <span class="icon">✉️</span> Templates de E-mail
+                </a>
+            </nav>
+
+            <div class="sidebar-widget glass-card">
+                <div class="widget-header">
+                    <span class="status-dot online"></span>
+                    <span>Modo de Operação</span>
+                </div>
+                <p class="widget-desc">Fase 2: Pitch Demo & Automação</p>
+                <div class="widget-badge">Fase 2 Ativa</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            <!-- Top Header Bar -->
+            <header class="top-header">
+                <div class="header-search">
+                    <span class="search-icon">🔎</span>
+                    <input type="text" id="globalSearchInput" placeholder="Buscar por empresa, cidade, nicho ou telefone...">
+                </div>
+
+                <div class="header-actions">
+                    <button class="action-btn secondary-btn" id="exportCsvBtn">
+                        <span>📥</span> Exportar Salvos (.CSV)
+                    </button>
+                    <button class="action-btn primary-btn" id="newScanTriggerBtn">
+                        <span>⚡</span> Nova Varredura
+                    </button>
+                </div>
+            </header>
+
+            <!-- Section 1: Scanner View -->
+            <section class="content-section" id="section-scanner">
+                <!-- Summary Metrics Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card glass-card">
+                        <div class="metric-icon cyan">🏢</div>
+                        <div class="metric-data">
+                            <span class="metric-label">Total Varrido na Pesquisa</span>
+                            <h3 class="metric-value" id="metricTotalLeads">0</h3>
+                            <span class="metric-sub text-cyan" id="metricCitySub">Aguardando varredura</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card glass-card alert-card">
+                        <div class="metric-icon red">🔥</div>
+                        <div class="metric-data">
+                            <span class="metric-label">Sem Site (Oportunidades Quentes)</span>
+                            <h3 class="metric-value" id="metricNoWebsiteLeads">0</h3>
+                            <span class="metric-sub text-red" id="metricNoSitePerc">0% do resultado</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card glass-card">
+                        <div class="metric-icon gold">🌐</div>
+                        <div class="metric-data">
+                            <span class="metric-label">Pitch Demos Gerados</span>
+                            <h3 class="metric-value" id="metricDemoCount">0</h3>
+                            <span class="metric-sub text-gold">Modelos Prontos</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card glass-card">
+                        <div class="metric-icon green">⭐</div>
+                        <div class="metric-data">
+                            <span class="metric-label">Leads Salvos no CRM</span>
+                            <h3 class="metric-value" id="metricSavedTotal">0</h3>
+                            <span class="metric-sub text-green">Prontos para contato</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scanner Control Box -->
+                <div class="scanner-control-box glass-card" id="scannerControlCard">
+                    <div class="control-header">
+                        <h3>🔍 Painel de Varredura por Região & Nicho</h3>
+                        <span class="badge-tag cyan">Varredura em Tempo Real</span>
+                    </div>
+
+                    <form id="scanConfigForm" class="scan-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="selectRegion">📍 Estado / Região</label>
+                                <select id="selectRegion" class="form-control">
+                                    <option value="MG">Minas Gerais (MG)</option>
+                                    <option value="SP">São Paulo (SP)</option>
+                                    <option value="PR">Paraná (PR)</option>
+                                    <option value="RJ">Rio de Janeiro (RJ)</option>
+                                    <option value="SC">Santa Catarina (SC)</option>
+                                    <option value="RS">Rio Grande do Sul (RS)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputCity">🏙️ Cidade Principal</label>
+                                <input type="text" id="inputCity" class="form-control" value="Iturama" placeholder="Ex: Iturama, Uberlândia, Frutal">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="selectNiche">💈 Nicho de Negócio</label>
+                                <select id="selectNiche" class="form-control">
+                                    <option value="Saúde & Clínicas">Clínicas, Médicos & Dentistas</option>
+                                    <option value="Estética & Beleza">Estética, Salões & Barbearias</option>
+                                    <option value="Gastronomia & Restos">Hamburguerias & Gastronomia</option>
+                                    <option value="Serviços & Auto">Oficinas, Auto & Serviços Locais</option>
+                                    <option value="Fitness & Esporte">Academias & Studio de Pilates</option>
+                                    <option value="todos">Todos os Nichos</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="selectFilterStatus">🌐 Presença Web Esperada</label>
+                                <select id="selectFilterStatus" class="form-control">
+                                    <option value="sem_site" selected>🔴 Apenas SEM SITE (Oportunidades Quentes)</option>
+                                    <option value="todos">Todos (Com Site e Sem Site)</option>
+                                    <option value="linktree">🟡 Apenas Linktree / WhatsApp</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions-full">
+                            <button type="submit" class="btn-scan-start" id="startScanBtn">
+                                <span class="btn-icon">⚡</span> Executar Varredura Completa
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Scanning Animated Progress Bar & Audit Log -->
+                    <div class="scan-progress-wrapper hidden" id="scanProgressWrapper">
+                        <div class="progress-info">
+                            <span id="scanProgressText">Iniciando varredura...</span>
+                            <span id="scanPercentText">0%</span>
+                        </div>
+                        <div class="progress-bar-track">
+                            <div class="progress-bar-fill" id="scanProgressBarFill"></div>
+                        </div>
+
+                        <!-- Real-time Audit Terminal -->
+                        <div class="audit-terminal" id="auditTerminal">
+                            <div class="audit-line text-cyan">> [AUDITORIA] Iniciando varredura por camadas...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audit Summary Banner -->
+                <div class="audit-summary-banner glass-card" id="auditSummaryBanner">
+                    <div class="audit-status">
+                        <span class="status-badge-green">🟢 Cobertura 100% Concluída</span>
+                        <p id="auditDetailsText">Relatório de Varredura: 5 sub-categorias pesquisadas • 0 duplicados • Nenhuma empresa deixada para trás em Iturama - MG.</p>
+                    </div>
+                    <button class="toggle-log-btn" id="toggleAuditLogsBtn">📜 Ver Log Técnico de Cobertura</button>
+                </div>
+
+                <!-- Technical Log Console (Collapsible) -->
+                <div class="log-console-box glass-card hidden" id="logConsoleBox">
+                    <div class="console-header">
+                        <span>📋 Log de Auditoria da Varredura (Transparência de Busca)</span>
+                        <button class="close-console-btn" id="closeConsoleBtn">&times;</button>
+                    </div>
+                    <div class="console-body" id="consoleLogContent"></div>
+                </div>
+
+                <!-- Current Scan Results Table -->
+                <div class="table-container glass-card">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>🔍 Resultados da Varredura Atual</h3>
+                            <span class="count-badge" id="scanCountBadge">0 Resultados</span>
+                        </div>
+                        <div class="table-actions-right">
+                            <button class="action-btn secondary-btn small-btn" id="saveAllNoSiteBtn">
+                                <span>📌</span> Salvar Todos "Sem Site"
+                            </button>
+                        </div>
+                    </div>
+
+                    <table class="leads-table">
+                        <thead>
+                            <tr>
+                                <th>Empresa / Negócio</th>
+                                <th>Nicho & Cidade</th>
+                                <th>Instagram & Telefone</th>
+                                <th>Presença Web</th>
+                                <th>Demonstração</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scanTableBody">
+                            <tr>
+                                <td colspan="6" class="empty-state">
+                                    Preencha os campos acima e clique em <strong>"Executar Varredura Completa"</strong> para encontrar empresas em Iturama ou na cidade desejada.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 2: Saved Leads CRM View -->
+            <section class="content-section hidden" id="section-saved">
+                <div class="table-container glass-card">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>⭐ Leads Salvos (Seu CRM de Prospecção)</h3>
+                            <span class="count-badge" id="savedTableCountBadge">0 Salvos</span>
+                        </div>
+                        <div class="table-filters">
+                            <button class="filter-tab active" data-savedfilter="all">Todos os Salvos</button>
+                            <button class="filter-tab" data-savedfilter="novo">Novo Lead</button>
+                            <button class="filter-tab" data-savedfilter="contatado">Contatados</button>
+                        </div>
+                    </div>
+
+                    <table class="leads-table">
+                        <thead>
+                            <tr>
+                                <th>Empresa / Negócio</th>
+                                <th>Nicho & Cidade</th>
+                                <th>Instagram & Contato</th>
+                                <th>Presença Web</th>
+                                <th>Status Pipeline</th>
+                                <th>Demonstrativo & Contato</th>
+                            </tr>
+                        </thead>
+                        <tbody id="savedTableBody">
+                            <tr>
+                                <td colspan="6" class="empty-state">
+                                    Nenhum lead salvo ainda. Faça uma varredura e clique em <strong>"📌 Salvar Lead"</strong> para montar sua lista de contatos.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal: Contact via Email Generator -->
+    <div class="modal-overlay hidden" id="emailModal">
+        <div class="modal-card glass-card">
+            <button class="modal-close" id="closeEmailModalBtn">&times;</button>
+            <div class="modal-header">
+                <span class="modal-icon">✉️</span>
+                <div>
+                    <h2>Enviar Proposta Comercial por E-mail</h2>
+                    <p id="emailModalSub">Empresa: <strong id="emailCompanyTarget">...</strong></p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Selecione o Template de Apresentação:</label>
+                    <select id="emailTemplateSelect" class="form-control">
+                        <option value="pitch_demo">⭐ Template de Pitch: Com Link do Site Demo (Alta Conversão)</option>
+                        <option value="site_direto">Template 1: Proposta Direta (Foco em Vendas no Google)</option>
+                        <option value="auditoria">Template 2: Auditoria Visual do Instagram -> Falta de Site</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>E-mail de Destino:</label>
+                    <input type="email" id="emailTargetInput" class="form-control" value="contato@empresa.com.br">
+                </div>
+
+                <div class="form-group">
+                    <label>Assunto do E-mail:</label>
+                    <input type="text" id="emailSubjectInput" class="form-control" value="Oportunidade: Protótipo de Site para {NOME}">
+                </div>
+
+                <div class="form-group">
+                    <label>Corpo da Mensagem (Com Link do Site Demo Incluso):</label>
+                    <textarea id="emailBodyInput" class="form-control" rows="9"></textarea>
+                </div>
+
+                <div class="email-direct-box glass-card" style="padding: 12px; font-size: 0.8rem; background: rgba(0,242,254,0.05); border: 1px dashed var(--accent-cyan);">
+                    <span>⚡ <strong>Disparo Automático no Servidor:</strong> Envia diretamente pelo serviço sem precisar abrir o seu e-mail local.</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-btn secondary-btn" id="copyEmailContentBtn">📋 Copiar Texto</button>
+                <button class="action-btn primary-btn" id="sendDirectEmailBtn">⚡ Disparar E-mail Automático</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Direct WhatsApp Sender -->
+    <div class="modal-overlay hidden" id="whatsappModal">
+        <div class="modal-card glass-card">
+            <button class="modal-close" id="closeWhatsappModalBtn">&times;</button>
+            <div class="modal-header">
+                <span class="modal-icon text-green">💬</span>
+                <div>
+                    <h2>Iniciar Conversa no WhatsApp</h2>
+                    <p>Enviar proposta direta para <strong id="waCompanyTarget">...</strong></p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Número do WhatsApp:</label>
+                    <input type="text" id="waPhoneInput" class="form-control" value="+55 (34) 99999-8888">
+                </div>
+
+                <div class="form-group">
+                    <label>Mensagem Pronta com Link do Site Demo:</label>
+                    <textarea id="waMessageInput" class="form-control" rows="7"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-btn whatsapp-btn" id="openWhatsappLinkBtn">
+                    <span>💬</span> Abrir no WhatsApp Web/App
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

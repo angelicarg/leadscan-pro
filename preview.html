@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Demonstração Exclusiva de Site Profissional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #10b981;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); background: var(--bg-light); line-height: 1.6; }
+
+        /* Top Watermark Demo Bar */
+        .demo-bar {
+            background: linear-gradient(90deg, #8a2be2, #00f2fe);
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .demo-bar strong { font-weight: 800; }
+
+        .btn-acquire {
+            background: #fff;
+            color: #0f172a;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .btn-acquire:hover { transform: scale(1.05); }
+
+        /* Personalization Disclaimer Banner with Profile Avatar */
+        .personalization-banner {
+            background: #eff6ff;
+            border-bottom: 1px solid #bfdbfe;
+            color: #1e40af;
+            padding: 14px 5%;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .banner-avatar-frame {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+        }
+
+        .banner-avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .personalization-banner strong { color: #1e3a8a; }
+
+        /* Site Header */
+        header.site-header {
+            background: #fff;
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-brand { display: flex; align-items: center; gap: 12px; }
+
+        .avatar-img {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+        }
+
+        .logo { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--secondary); }
+        .logo span { color: var(--primary); }
+
+        nav.site-nav { display: flex; gap: 24px; }
+        nav.site-nav a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.9rem; }
+
+        .header-cta {
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        /* Hero Section */
+        section.hero {
+            padding: 70px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 1) 90%);
+        }
+
+        .hero-text h1 { font-family: 'Outfit', sans-serif; font-size: 2.6rem; font-weight: 800; color: var(--secondary); line-height: 1.2; margin-bottom: 16px; }
+        .hero-text h1 span { color: var(--primary); }
+        .hero-text p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 28px; }
+
+        .hero-buttons { display: flex; gap: 14px; }
+
+        .btn-main {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-wa {
+            background: #25d366;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-card-preview {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .hero-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin: 0 auto 12px auto;
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        .card-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 14px;
+        }
+
+        .preview-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0; text-align: left; }
+        .preview-list li { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+
+        /* Social Media Showcase Section */
+        section.social-showcase {
+            padding: 60px 5%;
+            background: #f1f5f9;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .showcase-header h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 8px; }
+        .showcase-header p { color: var(--text-light); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .gallery-card:hover { transform: translateY(-4px); }
+
+        .gallery-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            padding: 14px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Customization Callout Box */
+        .customization-box {
+            margin-top: 40px;
+            background: #fff;
+            border: 2px dashed var(--primary);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .customization-box h3 { font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 8px; }
+        .customization-box p { font-size: 0.9rem; color: var(--text-light); max-width: 700px; margin: 0 auto 16px auto; }
+
+        /* Features Section */
+        section.features { padding: 60px 5%; background: #fff; text-align: center; }
+        section.features h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 40px; }
+
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-item { background: var(--bg-light); padding: 30px; border-radius: 16px; text-align: left; }
+        .feature-icon { font-size: 2rem; margin-bottom: 12px; }
+        .feature-item h3 { font-size: 1.1rem; margin-bottom: 8px; }
+        .feature-item p { font-size: 0.88rem; color: var(--text-light); }
+
+        /* Footer CTA Banner */
+        section.footer-cta {
+            background: var(--secondary);
+            color: #fff;
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        section.footer-cta h2 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; margin-bottom: 14px; }
+        section.footer-cta p { color: #94a3b8; margin-bottom: 28px; }
+
+        @media (max-width: 800px) {
+            section.hero { grid-template-columns: 1fr; padding: 40px 5%; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Watermark Top Bar -->
+    <div class="demo-bar">
+        <span>⚡ <strong>Demonstração Exclusiva de Site</strong> para <span id="barCompanyName">Empresa</span> (<span id="barCityName">Cidade</span>)</span>
+        <a href="#" class="btn-acquire" onclick="acquireSitePrompt()">🚀 Quero Publicar Este Site</a>
+    </div>
+
+    <!-- Personalization Disclaimer Banner with Profile Avatar -->
+    <div class="personalization-banner">
+        <div class="banner-avatar-frame">
+            <img src="assets/lumen_space.jpg" id="bannerAvatarImg" alt="Foto de Perfil do Instagram">
+        </div>
+        <div>
+            <strong>Foto de Perfil Extraída do <span id="bannerIgHandle">@empresa</span>:</strong>
+            <p style="margin-top: 2px;">Este protótipo utilizou a foto de perfil oficial e elementos públicos da sua rede social. Na versão final, <strong>personalizamos 100% das cores, fontes, textos, fotos e logotipo</strong> para deixar com a cara da sua marca!</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="logo-brand">
+            <img src="assets/lumen_space.jpg" alt="Avatar Empresa" class="avatar-img" id="companyAvatarImg">
+            <div class="logo">✨ <span id="siteLogoName">Empresa</span></div>
+        </div>
+        <nav class="site-nav">
+            <a href="#inicio">Início</a>
+            <a href="#galeria">Fotos das Redes</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#contato">Contato</a>
+        </nav>
+        <a href="#contato" class="header-cta" id="headerCtaBtn">Fazer Agendamento</a>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-text">
+            <h1>Excelência e Atendimento de Qualidade na <span id="heroCompanyName">Sua Empresa</span></h1>
+            <p id="heroDescText">Sua melhor escolha em <span id="heroCityName">Iturama</span>. Atendimento especializado, agilidade e os melhores profissionais da região.</p>
+            <div class="hero-buttons">
+                <a href="#contato" class="btn-main">Fazer Orçamento</a>
+                <a href="#" class="btn-wa" id="heroWaBtn">💬 Chamar no WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="hero-card-preview">
+            <img src="assets/lumen_space.jpg" alt="Foto de Perfil Empresa" class="hero-avatar-large" id="heroLargeAvatarImg">
+            <br>
+            <span class="card-badge">⭐ Perfil Verificado no Instagram</span>
+            <h3 id="cardTitle">Agende seu horário online com rapidez</h3>
+            <ul class="preview-list">
+                <li>✅ Resposta rápida via WhatsApp</li>
+                <li>✅ Localização fácil em <span id="cardCity">Iturama</span></li>
+                <li>✅ Garantia de satisfação e qualidade</li>
+            </ul>
+            <a href="#contato" class="btn-main" style="display: block; text-align: center;">Solicitar Informações</a>
+        </div>
+    </section>
+
+    <!-- Social Showcase Gallery -->
+    <section class="social-showcase" id="galeria">
+        <div class="showcase-header">
+            <h2>📸 Galeria de Destaques das Redes Sociais</h2>
+            <p>Integrada com a foto de perfil e publicações do <span id="showcaseIgHandle">@empresa</span> em <span id="showcaseCity">Iturama</span></p>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Dynamically Injected by Script -->
+        </div>
+
+        <div class="customization-box">
+            <h3>🎨 Podemos mudar absolutamente TUDO o que você quiser!</h3>
+            <p>Esta demonstração é um ponto de partida. Na versão final, alteramos cores, layout, adicionamos o seu logotipo oficial, catálogo de produtos/serviços e formulários sob medida para o seu negócio.</p>
+            <a href="#" class="btn-main" onclick="acquireSitePrompt()">✨ Personalizar Meu Site Oficial</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="servicos">
+        <h2>Nossos Diferenciais & Serviços</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🚀</div>
+                <h3>Atendimento Rápido</h3>
+                <p>Equipe pronta para atender com agilidade e tirar todas as suas dúvidas.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🏆</div>
+                <h3>Qualidade Garantida</h3>
+                <p>Os melhores processos e materiais do mercado para você.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📍</div>
+                <h3>Fácil Acesso</h3>
+                <p>Localização privilegiada no centro da cidade com estacionamento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta" id="contato">
+        <h2>Pronto para conhecer a <span id="footerCompanyName">Empresa</span>?</h2>
+        <p>Fale diretamente conosco pelo WhatsApp ou agende sua visita hoje mesmo!</p>
+        <a href="#" class="btn-wa" style="display: inline-flex;" id="footerWaBtn">💬 Falar no WhatsApp Agora</a>
+    </section>
+
+    <script>
+        // Extract URL Parameters
+        const params = new URLSearchParams(window.location.search);
+        const empresa = params.get('empresa') || 'Sua Empresa';
+        const nicho = params.get('nicho') || 'Serviços & Qualidade';
+        const cidade = params.get('cidade') || 'Iturama';
+        const phone = params.get('phone') || '5534999998888';
+        const instagram = params.get('instagram') || `@${empresa.toLowerCase().replace(/[^a-z0-9]/g, '')}`;
+        const avatarUrl = params.get('avatar');
+
+        // Dynamic Profile Avatar Images per Niche
+        const nicheAvatars = {
+            'Saúde & Clínicas': 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=150&auto=format&fit=crop&q=80',
+            'Estética & Beleza': 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=150&auto=format&fit=crop&q=80',
+            'Gastronomia & Restos': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=150&auto=format&fit=crop&q=80',
+            'Serviços & Auto': 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=150&auto=format&fit=crop&q=80',
+            'Fitness & Esporte': 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=150&auto=format&fit=crop&q=80'
+        };
+
+        const chosenAvatar = avatarUrl || nicheAvatars[nicho] || nicheAvatars['Saúde & Clínicas'];
+
+        // Update Images
+        document.getElementById('companyAvatarImg').src = chosenAvatar;
+        document.getElementById('bannerAvatarImg').src = chosenAvatar;
+        document.getElementById('heroLargeAvatarImg').src = chosenAvatar;
+
+        // Update Text Elements
+        document.title = `${empresa} - Site Oficial em ${cidade}`;
+        document.getElementById('barCompanyName').textContent = empresa;
+        document.getElementById('barCityName').textContent = cidade;
+        document.getElementById('bannerIgHandle').textContent = instagram;
+        document.getElementById('showcaseIgHandle').textContent = instagram;
+        document.getElementById('siteLogoName').textContent = empresa;
+        document.getElementById('heroCompanyName').textContent = empresa;
+        document.getElementById('heroCityName').textContent = cidade;
+        document.getElementById('cardCity').textContent = cidade;
+        document.getElementById('showcaseCity').textContent = cidade;
+        document.getElementById('footerCompanyName').textContent = empresa;
+
+        // Clean Phone & WhatsApp Links
+        const cleanPhone = phone.replace(/\D/g, '');
+        const waLink = `https://wa.me/${cleanPhone}?text=Olá! Encontrei o site da ${encodeURIComponent(empresa)} no Google e gostaria de informações.`;
+
+        document.getElementById('heroWaBtn').href = waLink;
+        document.getElementById('footerWaBtn').href = waLink;
+
+        // Dynamic High Quality Photo Gallery per Niche
+        const nichePhotoGalleries = {
+            'Saúde & Clínicas': [
+                { img: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=500&auto=format&fit=crop&q=80', caption: 'Estrutura moderna e consultórios climatizados' },
+                { img: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&auto=format&fit=crop&q=80', caption: 'Equipe especializada e atendimento humanizado' },
+                { img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&auto=format&fit=crop&q=80', caption: 'Equipamentos de alta tecnologia para diagnóstico' }
+            ],
+            'Estética & Beleza': [
+                { img: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&auto=format&fit=crop&q=80', caption: 'Ambiente aconchegante para seus cuidados de beleza' },
+                { img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&auto=format&fit=crop&q=80', caption: 'Procedimentos estéticos com produtos de primeira linha' },
+                { img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format&fit=crop&q=80', caption: 'Transformação de visual e cuidados com os cabelos' }
+            ],
+            'Gastronomia & Restos': [
+                { img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&auto=format&fit=crop&q=80', caption: 'Pratos preparados com ingredientes frescos e selecionados' },
+                { img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&auto=format&fit=crop&q=80', caption: 'Ambiente agradável para reunir a família e amigos' },
+                { img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=80', caption: 'Sabor inconfundível e porções caprichadas' }
+            ],
+            'Serviços & Auto': [
+                { img: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=80', caption: 'Oficina completa com aparelhos computadorizados' },
+                { img: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=500&auto=format&fit=crop&q=80', caption: 'Revisão preventiva e diagnóstico preciso' },
+                { img: 'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=500&auto=format&fit=crop&q=80', caption: 'Peças originais e garantia em todos os serviços' }
+            ],
+            'Fitness & Esporte': [
+                { img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&auto=format&fit=crop&q=80', caption: 'Aparelhos modernos para treino de musculação e cardio' },
+                { img: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=500&auto=format&fit=crop&q=80', caption: 'Aulas em grupo com instrutores qualificados' },
+                { img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&auto=format&fit=crop&q=80', caption: 'Acompanhamento personalizado para seus objetivos' }
+            ]
+        };
+
+        const defaultGallery = nichePhotoGalleries['Saúde & Clínicas'];
+        const selectedGallery = nichePhotoGalleries[nicho] || defaultGallery;
+
+        const galleryGrid = document.getElementById('galleryGrid');
+        galleryGrid.innerHTML = '';
+
+        selectedGallery.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'gallery-card';
+            card.innerHTML = `
+                <img src="${item.img}" alt="${item.caption}">
+                <div class="gallery-caption">${item.caption}</div>
+            `;
+            galleryGrid.appendChild(card);
+        });
+
+        function acquireSitePrompt() {
+            alert(`Você está vendo o protótipo de demonstração gerado para a empresa "${empresa}".\n\nEste é um modelo inicial que utilizou a foto de perfil do seu Instagram (${instagram}). Na versão oficial, mudamos 100% das cores, fontes, textos, fotos e logotipo para deixar exatamente com a cara da sua marca!`);
+        }
+    </script>
+</body>
+</html>

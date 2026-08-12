@@ -1,6 +1,6 @@
 import https from 'https';
 
-const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || 'AIzaSyB1thJ0LXWlpaP12GXL9lPLAc7dj8SLlkw';
+const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || '';
 
 function fetchJson(url) {
     return new Promise((resolve, reject) => {

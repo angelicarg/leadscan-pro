@@ -10,8 +10,8 @@ const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 8090;
 
-// Official Google Places API Key
-const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || 'AIzaSyB1thJ0LXWlpaP12GXL9lPLAc7dj8SLlkw';
+// Official Google Places API Key (Le do .env / Vercel Environment Variables)
+const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || '';
 
 // Titan Email & Gmail Official Configuration Structure
 const TITAN_CONFIG = {
